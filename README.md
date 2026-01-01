@@ -202,7 +202,7 @@ This starts 3 Nginx containers on ports 5003, 5001, and 5002.
 **Step 2: Start Load Balancer**
 
 ```bash
-python3 main.py
+python3 -m src.main
 ```
 
 You should see:
@@ -271,7 +271,7 @@ HEALTH_CHECK_TIMEOUT = 2   # 2 second timeout
 - `RoutingAlgorithm.URL_HASH` - Same URL → same server
 - `RoutingAlgorithm.CONSISTENT_HASH` - Better hash distribution
 
-See [ROUTING_ALGORITHMS.md](ROUTING_ALGORITHMS.md) for detailed explanations.
+See [docs/ROUTING_ALGORITHMS.md](docs/ROUTING_ALGORITHMS.md) for detailed explanations.
 
 ## Routing Algorithms
 
@@ -384,12 +384,12 @@ The optional C++ extension (`proxy_cpp.cpp`) provides:
 ab -n 1000 -c 10 http://localhost:8080/
 
 # Using included load test script
-python3 load_test.py --requests 1000 --concurrency 10
+python3 tests/load_test.py --requests 1000 --concurrency 10
 ```
 
 ### Health Monitoring Test
 
-1. Start load balancer: `python3 main.py`
+1. Start load balancer: `python3 -m src.main`
 2. Stop one backend: `docker-compose stop backend1`
 3. Watch logs - server marked as dead within 5 seconds
 4. Make requests - only backend2 and backend3 receive traffic
@@ -401,7 +401,7 @@ This demonstrates **automatic fault tolerance**!
 
 ### Test Scenarios
 
-See [LOAD_TESTING.md](LOAD_TESTING.md) for comprehensive testing scenarios including:
+See [docs/LOAD_TESTING.md](docs/LOAD_TESTING.md) for comprehensive testing scenarios including:
 - Concurrent requests
 - Sustained load
 - Burst traffic
@@ -468,57 +468,62 @@ See [LOAD_TESTING.md](LOAD_TESTING.md) for comprehensive testing scenarios inclu
 
 **Trade-off**: Doesn't verify application-level health, but sufficient for basic load balancing.
 
-For more design decisions, see [ARCHITECTURE.md](ARCHITECTURE.md).
+For more design decisions, see [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md).
 
 ## Project Structure
 
 ```
 LoadBalancer/
-├── main.py                 # Entry point, orchestrates components
-├── router.py               # Request routing logic
-├── proxy.py                # Async proxy engine
-├── health_monitor.py       # Background health monitoring
-├── metrics.py              # Metrics collection
-├── config.py               # Configuration settings
-├── proxy_cpp.cpp          # Optional C++ extension
+├── src/                    # Core application source code
+│   ├── __init__.py        # Package initialization
+│   ├── main.py            # Entry point, orchestrates components
+│   ├── router.py         # Request routing logic
+│   ├── proxy.py           # Async proxy engine
+│   ├── health_monitor.py  # Background health monitoring
+│   ├── metrics.py         # Metrics collection
+│   ├── config.py          # Configuration settings
+│   └── proxy_cpp.cpp      # Optional C++ extension
+│
+├── tests/                 # Test files
+│   ├── load_test.py       # Load testing script
+│   └── test_load_balancer.py # Unit tests
+│
+├── scripts/               # Utility scripts
+│   ├── start.sh           # Start Docker backends
+│   ├── stop.sh            # Stop Docker backends
+│   ├── test_algorithms.sh # Test routing algorithms
+│   ├── test_now.sh        # Quick test
+│   ├── demo.sh            # Full demonstration
+│   └── clean_start.sh     # Clean restart
+│
+├── docs/                  # Documentation
+│   ├── ARCHITECTURE.md    # Design decisions and rationale
+│   ├── CODE_STRUCTURE.md  # Code navigation guide
+│   ├── CONTRIBUTING.md    # Contribution guidelines
+│   ├── ROUTING_ALGORITHMS.md # Algorithm explanations
+│   ├── LOAD_TESTING.md   # Testing guide
+│   └── BUILD_CPP.md      # C++ extension build guide
+│
+├── test_backends/         # Backend test files
+│   ├── backend1/         # HTML files for backend 1
+│   ├── backend2/          # HTML files for backend 2
+│   └── backend3/          # HTML files for backend 3
+│
+├── README.md              # Main documentation
+├── LICENSE                # MIT License
+├── requirements.txt       # Python dependencies
+├── docker-compose.yml     # Docker backend setup
 ├── setup.py                # Build script for C++ extension
-├── requirements.txt        # Python dependencies
-├── Makefile                # Build commands
-│
-├── docker-compose.yml      # Docker backend setup
-├── test_backends/          # HTML files for backend servers
-│   ├── backend1/
-│   ├── backend2/
-│   └── backend3/
-│
-├── Scripts/
-│   ├── start.sh            # Start Docker backends
-│   ├── stop.sh             # Stop Docker backends
-│   ├── test_algorithms.sh  # Test routing algorithms
-│   ├── test_now.sh         # Quick test
-│   ├── demo.sh             # Full demonstration
-│   └── clean_start.sh      # Clean restart
-│
-├── Documentation/
-│   ├── README.md           # This file
-│   ├── ARCHITECTURE.md     # Design decisions and rationale
-│   ├── ROUTING_ALGORITHMS.md  # Algorithm explanations
-│   ├── LOAD_TESTING.md     # Testing guide
-│   └── BUILD_CPP.md        # C++ extension build guide
-│
-└── Tests/
-    ├── load_test.py        # Load testing script
-    ├── test_running.py     # Basic tests
-    └── test_load_balancer.py  # Unit tests
+└── Makefile               # Build commands
 ```
 
 ### Code Organization
 
-- **Core Modules**: `main.py`, `router.py`, `proxy.py`, `health_monitor.py`, `metrics.py`
-- **Configuration**: `config.py` - centralized configuration
-- **Build**: `setup.py`, `Makefile` - C++ extension build
-- **Scripts**: Shell scripts for common operations
-- **Documentation**: Markdown files explaining concepts
+- **Core Modules** (`src/`): All application code organized as a Python package
+- **Tests** (`tests/`): Test files for validation
+- **Scripts** (`scripts/`): Shell scripts for common operations
+- **Documentation** (`docs/`): Comprehensive documentation
+- **Configuration**: Root-level files for setup and deployment
 
 ## Contributing
 

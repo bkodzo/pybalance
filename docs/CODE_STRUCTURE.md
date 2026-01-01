@@ -7,47 +7,47 @@ This document explains the codebase structure and how to navigate it.
 ```
 LoadBalancer/
 │
-├── Core Application
-│   ├── main.py              # Entry point, orchestrates all components
-│   ├── router.py            # Request routing and algorithm implementation
-│   ├── proxy.py             # Async proxy engine for request forwarding
+├── src/                     # Core application source code
+│   ├── __init__.py         # Package initialization
+│   ├── main.py             # Entry point, orchestrates all components
+│   ├── router.py           # Request routing and algorithm implementation
+│   ├── proxy.py            # Async proxy engine for request forwarding
 │   ├── health_monitor.py   # Background health checking
-│   ├── metrics.py           # Metrics collection and reporting
-│   └── config.py            # Centralized configuration
+│   ├── metrics.py          # Metrics collection and reporting
+│   ├── config.py          # Centralized configuration
+│   └── proxy_cpp.cpp      # C++ extension for high-performance operations
 │
-├── Performance Extension
-│   ├── proxy_cpp.cpp        # C++ extension for high-performance operations
-│   ├── setup.py             # Build script for C++ extension
-│   └── Makefile             # Build commands
-│
-├── Deployment
-│   ├── docker-compose.yml   # Docker Compose configuration for backends
-│   └── test_backends/       # HTML files served by Nginx backends
-│       ├── backend1/
-│       ├── backend2/
-│       └── backend3/
-│
-├── Scripts
-│   ├── start.sh             # Start Docker backends
-│   ├── stop.sh              # Stop Docker backends
-│   ├── test_algorithms.sh   # Test routing algorithm distribution
-│   ├── test_now.sh          # Quick verification test
-│   ├── demo.sh              # Full demonstration
-│   ├── clean_start.sh       # Kill all processes for fresh start
-│   └── restart_lb.sh        # Restart load balancer
-│
-├── Testing
-│   ├── load_test.py         # Load testing script
-│   ├── test_running.py      # Basic functionality tests
+├── tests/                  # Test files
+│   ├── load_test.py        # Load testing script
 │   └── test_load_balancer.py # Unit tests
 │
-└── Documentation
-    ├── README.md            # Main documentation
-    ├── ARCHITECTURE.md      # Design decisions and rationale
-    ├── ROUTING_ALGORITHMS.md # Algorithm explanations
-    ├── LOAD_TESTING.md      # Testing guide
-    ├── BUILD_CPP.md         # C++ extension build guide
-    └── CODE_STRUCTURE.md    # This file
+├── scripts/                # Utility scripts
+│   ├── start.sh            # Start Docker backends
+│   ├── stop.sh             # Stop Docker backends
+│   ├── test_algorithms.sh  # Test routing algorithm distribution
+│   ├── test_now.sh         # Quick verification test
+│   ├── demo.sh             # Full demonstration
+│   └── clean_start.sh      # Kill all processes for fresh start
+│
+├── docs/                   # Documentation
+│   ├── ARCHITECTURE.md      # Design decisions and rationale
+│   ├── CODE_STRUCTURE.md   # This file
+│   ├── CONTRIBUTING.md     # Contribution guidelines
+│   ├── ROUTING_ALGORITHMS.md # Algorithm explanations
+│   ├── LOAD_TESTING.md     # Testing guide
+│   └── BUILD_CPP.md        # C++ extension build guide
+│
+├── test_backends/          # Backend test files
+│   ├── backend1/           # HTML files for backend 1
+│   ├── backend2/           # HTML files for backend 2
+│   └── backend3/           # HTML files for backend 3
+│
+├── README.md               # Main documentation
+├── LICENSE                 # MIT License
+├── requirements.txt        # Python dependencies
+├── docker-compose.yml      # Docker Compose configuration
+├── setup.py                # Build script for C++ extension
+└── Makefile               # Build commands
 ```
 
 ## Core Modules Explained

@@ -7,11 +7,11 @@ import asyncio
 import logging
 import signal
 import sys
-from router import Router, RoutingAlgorithm
-from health_monitor import HealthMonitor
-from proxy import ProxyEngine
-from metrics import Metrics
-import config
+from .router import Router, RoutingAlgorithm
+from .health_monitor import HealthMonitor
+from .proxy import ProxyEngine
+from .metrics import Metrics
+from . import config
 
 
 logging.basicConfig(

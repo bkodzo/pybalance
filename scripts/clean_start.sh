@@ -7,7 +7,7 @@ echo ""
 
 # Stop load balancer
 echo "1. Stopping load balancer..."
-pkill -f "python3 main.py" 2>/dev/null
+pkill -f "python3 -m src.main" 2>/dev/null
 sleep 1
 
 # Stop Python backends
@@ -41,7 +41,7 @@ for port in 8080 5000 5001 5002; do
     fi
 done
 
-if ps aux | grep -E "python3 main.py" | grep -v grep > /dev/null; then
+if ps aux | grep -E "python3 -m src.main" | grep -v grep > /dev/null; then
     echo "   WARNING: Python processes still running"
     all_clear=false
 else
@@ -65,6 +65,6 @@ fi
 echo ""
 echo "Ready to start fresh:"
 echo "  1. ./start.sh          (start Docker backends)"
-echo "  2. python3 main.py     (start load balancer in new terminal)"
+echo "  2. python3 -m src.main     (start load balancer in new terminal)"
 echo "  3. ./test_now.sh       (test it)"
 

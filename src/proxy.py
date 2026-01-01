@@ -7,7 +7,7 @@ import asyncio
 import logging
 import time
 from typing import Optional, Tuple
-from router import Router, Server
+from .router import Router, Server
 
 # Try to import C++ extension for performance boost
 try:

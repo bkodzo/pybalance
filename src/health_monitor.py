@@ -8,7 +8,7 @@ import threading
 import time
 import logging
 from typing import List
-from router import Router, Server
+from .router import Router, Server
 
 
 logger = logging.getLogger(__name__)

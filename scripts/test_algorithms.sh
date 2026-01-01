@@ -9,7 +9,7 @@ echo ""
 
 if ! lsof -i :8080 > /dev/null 2>&1; then
     echo "ERROR: Load balancer is not running"
-    echo "Please start it first: python3 main.py"
+    echo "Please start it first: python3 -m src.main"
     exit 1
 fi
 

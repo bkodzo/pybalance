@@ -28,7 +28,7 @@ echo ""
 if ! lsof -i :8080 > /dev/null 2>&1; then
     echo "WARNING: Load balancer is not running!"
     echo "Please start it in another terminal:"
-    echo "  python3 main.py"
+    echo "  python3 -m src.main"
     echo ""
     read -p "Press Enter when load balancer is running..."
 fi

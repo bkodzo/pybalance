@@ -10,8 +10,9 @@ ext_modules = [
     Pybind11Extension(
         "proxy_cpp",
         [
-            "proxy_cpp.cpp",
+            "src/proxy_cpp.cpp",
         ],
+        include_dirs=["src"],
         include_dirs=[
             # Additional include directories if needed
         ],

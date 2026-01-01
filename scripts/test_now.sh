@@ -10,7 +10,7 @@ if ! lsof -i :8080 > /dev/null 2>&1; then
     echo "ERROR: Load balancer is not running on port 8080"
     echo ""
     echo "Please start it first:"
-    echo "  python3 main.py"
+    echo "  python3 -m src.main"
     exit 1
 fi
 
