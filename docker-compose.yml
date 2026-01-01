@@ -1,0 +1,35 @@
+services:
+  # Backend server 1
+  backend1:
+    image: nginx:alpine
+    ports:
+      - "5003:80"
+    volumes:
+      - ./test_backends/backend1:/usr/share/nginx/html
+    networks:
+      - pbalance-network
+
+  # Backend server 2
+  backend2:
+    image: nginx:alpine
+    ports:
+      - "5001:80"
+    volumes:
+      - ./test_backends/backend2:/usr/share/nginx/html
+    networks:
+      - pbalance-network
+
+  # Backend server 3
+  backend3:
+    image: nginx:alpine
+    ports:
+      - "5002:80"
+    volumes:
+      - ./test_backends/backend3:/usr/share/nginx/html
+    networks:
+      - pbalance-network
+
+networks:
+  pbalance-network:
+    driver: bridge
+

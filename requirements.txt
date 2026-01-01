@@ -1,0 +1,8 @@
+# PyBalance dependencies
+# Core functionality uses only Python standard library
+# Optional: C++ extension for performance boost
+
+# For building C++ extension (optional)
+pybind11>=2.10.0
+setuptools>=65.0.0
+
