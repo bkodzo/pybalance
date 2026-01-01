@@ -1,6 +1,6 @@
 /*
  * C++ extension for high-performance byte operations
- * I optimize data transfer between client and backend sockets
+ * Optimizes data transfer between client and backend sockets
  */
 
 #include <pybind11/pybind11.h>
@@ -13,7 +13,7 @@
 namespace py = pybind11;
 
 /**
- * I copy bytes using memcpy for maximum performance on large transfers
+ * Copy bytes using memcpy for maximum performance on large transfers
  */
 std::vector<uint8_t> fast_copy(const std::vector<uint8_t>& data) {
     std::vector<uint8_t> result(data.size());
@@ -22,14 +22,14 @@ std::vector<uint8_t> fast_copy(const std::vector<uint8_t>& data) {
 }
 
 /**
- * I return a reference to avoid copying when I just need to peek at data
+ * Return reference to avoid copying when peeking at data
  */
 const std::vector<uint8_t>& buffer_view(const std::vector<uint8_t>& data) {
     return data;
 }
 
 /**
- * I process chunks in batches for better cache locality
+ * Process chunks in batches for better cache locality
  */
 std::vector<std::vector<uint8_t>> process_chunks(
     const std::vector<uint8_t>& data,
@@ -50,7 +50,7 @@ std::vector<std::vector<uint8_t>> process_chunks(
 }
 
 /**
- * I parse HTTP header to extract method and path
+ * Parse HTTP header to extract method and path
  */
 std::pair<std::string, std::string> parse_http_header(
     const std::vector<uint8_t>& data
@@ -92,7 +92,7 @@ std::pair<std::string, std::string> parse_http_header(
 }
 
 /**
- * I concatenate buffers efficiently by pre-allocating result
+ * Concatenate buffers efficiently by pre-allocating result
  */
 std::vector<uint8_t> concat_buffers(
     const std::vector<std::vector<uint8_t>>& buffers

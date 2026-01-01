@@ -73,7 +73,7 @@ class LoadBalancer:
             self.server.close()
 
 
-    async def main():
+async def main():
     """Main entry point."""
     lb = LoadBalancer()
     

@@ -18,7 +18,7 @@ def test_load_balancer(url="http://localhost:8080", num_requests=30):
     for i in range(num_requests):
         try:
             response = requests.get(url, timeout=5)
-            # I extract which backend handled the request based on response format
+            # Extract backend from response format
             responses.append(response.status_code)
             if i % 5 == 0:
                 print(f"Request {i+1}: Status {response.status_code}")
