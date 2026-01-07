@@ -546,7 +546,6 @@ Contributions are welcome! This is a learning project, so feel free to:
 ## License
 
 MIT License - see [LICENSE](LICENSE) file for details.
-
 ## Acknowledgments
 
 Built as a learning project to understand:
@@ -559,3 +558,4 @@ Built as a learning project to understand:
 ---
 
 **Note**: This is a learning project. For production use, consider established solutions like Nginx, HAProxy, or cloud load balancers. However, this project demonstrates the core concepts and can be extended for specific use cases.
+
