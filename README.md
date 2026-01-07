@@ -3,7 +3,7 @@
 [![Python](https://img.shields.io/badge/Python-3.7+-blue.svg)](https://www.python.org/)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
-A production-ready, fault-tolerant application layer (Layer 7) load balancer built in Python. PyBalance distributes HTTP traffic across multiple backend servers with intelligent routing, health monitoring, and high-performance async I/O.
+A fault-tolerant application layer (Layer 7) load balancer built in Python. PyBalance distributes HTTP traffic across multiple backend servers with intelligent routing, health monitoring, and high-performance async I/O.
 
 ## Table of Contents
 
